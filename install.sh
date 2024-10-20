@@ -11,9 +11,6 @@ sudo dnf clean all -y
 sudo dnf clean all -y
 sudo dnf install nodejs -y
 
-# Instalar Docker Desktop 
-sudo dnf install ./docker-desktop-<arch>.rpm -y
-
 # Instalar o Zen Browser
 flatpak install flathub io.github.zen_browser.zen -y
 
@@ -36,9 +33,27 @@ flatpak install flathub org.upscayl.Upscayl -y
 flatpak install flathub com.termius.Termius -y
 
 # Instalar as fontes que estão na pasta: Fontes
-# Aplicativos para instalar depois manualmente: , Microsoft Edge, Slack, Zoom, Figma for Desktop, Insync
+# Aplicativos para instalar depois manualmente:
 
-#Instalar o AnythingLLM Desktop
-#curl -fsSL https://s3.us-west-1.amazonaws.com/public.useanything.com/latest/installer.sh | sh
+# Instalar o Microsoft Edge:
+#https://go.microsoft.com/fwlink?linkid=2149137&brand=M102
+
+# Instalar o Slack:
+# https://slack.com/downloads/instructions/linux?ddl=1&build=rpm
+
+# Instalar o Zoom:
+# https://zoom.us/client/6.2.3.2056/zoom_x86_64.rpm
+
+# Instalar o Insync:
+# https://cdn.insynchq.com/builds/linux/3.9.4.60020/insync-3.9.4.60020-fc40.x86_64.rpm
+
+# Instalar o AnythingLLM Desktop:
+# curl -fsSL https://s3.us-west-1.amazonaws.com/public.useanything.com/latest/installer.sh | sh
+
+# Instalar o Figma Desktop:
+# https://github.com/Figma-Linux/figma-linux/releases/download/v0.11.5/figma-linux_0.11.5_linux_aarch64.rpm
+
+# Instalar Docker Desktop 
+# sudo dnf install ./docker-desktop-<arch>.rpm -y
 
 # O que adicionar como webapp depois: Notion
