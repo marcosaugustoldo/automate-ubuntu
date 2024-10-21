@@ -31,6 +31,7 @@ flatpak install flathub io.github.pwr_solaar.solaar -y
 flatpak install flathub net.xmind.XMind -y
 flatpak install flathub org.upscayl.Upscayl -y
 flatpak install flathub com.termius.Termius -y
+flatpak install flathub it.mijorus.gearlever -y
 
 # Instalar as fontes que estão na pasta: Fontes
 # Aplicativos para instalar depois manualmente:
@@ -51,7 +52,7 @@ flatpak install flathub com.termius.Termius -y
 # curl -fsSL https://s3.us-west-1.amazonaws.com/public.useanything.com/latest/installer.sh | sh
 
 # Instalar o Figma Desktop:
-# https://github.com/Figma-Linux/figma-linux/releases/download/v0.11.5/figma-linux_0.11.5_linux_aarch64.rpm
+# https://github.com/Figma-Linux/figma-linux/releases/download/v0.11.5/figma-linux_0.11.5_linux_x86_64.rpm
 
 # Instalar Docker Desktop 
 # sudo dnf install ./docker-desktop-<arch>.rpm -y
