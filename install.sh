@@ -32,12 +32,18 @@ flatpak install flathub net.xmind.XMind -y
 flatpak install flathub org.upscayl.Upscayl -y
 flatpak install flathub com.termius.Termius -y
 flatpak install flathub it.mijorus.gearlever -y
+flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor -y
+
+# Instalar ícones
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme
+cd WhiteSur-icon-theme/
+./install.sh -a --alternative -b --bold
 
 # Instalar as fontes que estão na pasta: Fontes
 # Aplicativos para instalar depois manualmente:
 
 # Instalar o Microsoft Edge:
-#https://go.microsoft.com/fwlink?linkid=2149137&brand=M102
+# https://go.microsoft.com/fwlink?linkid=2149137&brand=M102
 
 # Instalar o Slack:
 # https://slack.com/downloads/instructions/linux?ddl=1&build=rpm
