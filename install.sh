@@ -6,6 +6,12 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 # Instalar o GNOME Tweaks para configurar o botão de minimizar
 sudo dnf install gnome-tweaks -y
 
+# Instalar o Telegram
+sudo dnf install telegram
+
+# Instalar o VLC
+sudo dnf install vlc
+
 # Instalar o Node.js
 sudo dnf clean all -y
 sudo dnf clean all -y
