@@ -72,6 +72,9 @@ for pacote in "${pacotes[@]}"; do
   rm "$arquivo"
 done
 
+# Instalar o AnythingLLM
+curl -fsSL https://s3.us-west-1.amazonaws.com/public.useanything.com/latest/installer.sh | sh
+
 echo "Pacotes .deb instalados com sucesso!"
 
 # Instalar tema
