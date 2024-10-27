@@ -1,72 +1,93 @@
 #!/bin/bash
 
-# Instalar o RPM Fusion
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+# Atualiza o sistema
+echo "Atualizando o sistema..."
+sudo apt update && sudo apt upgrade -y
 
-# Instalar o GNOME Tweaks para configurar o botão de minimizar
-sudo dnf install gnome-tweaks -y
+# Instala o Node.js e npm
+echo "Instalando Node.js e npm..."
+sudo apt install -y nodejs npm
 
-# Instalar o Telegram
-sudo dnf install telegram
+# Verifica se o Node.js e npm foram instalados corretamente
+node_version=$(node -v)
+npm_version=$(npm -v)
+echo "Node.js versão: $node_version"
+echo "npm versão: $npm_version"
 
-# Instalar o VLC
-sudo dnf install vlc
-
-# Instalar o Node.js
-sudo dnf clean all -y
-sudo dnf clean all -y
-sudo dnf install nodejs -y
-
-# Instalar o Zen Browser
-flatpak install flathub io.github.zen_browser.zen -y
+echo "Node.js e npm instalados com sucesso!"
 
 # Instalar as fontes da Microsoft
-sudo dnf install https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm -y
+echo "Instalando fontes da Microsoft..."
+sudo add-apt-repository multiverse
+sudo apt update && sudo apt install ttf-mscorefonts-installer -y
+
+echo "Fonte da Microsoft instaladas com sucesso!"
 
 # Instalar aplicativos em flatpak
-flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub com.spotify.Client -y
-flatpak install flathub com.obsproject.Studio -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
-flatpak install flathub org.localsend.localsend_app -y
-flatpak install flathub com.rtosta.zapzap -y
-flatpak install flathub org.telegram.desktop -y
-flatpak install flathub com.todoist.Todoist -y
-flatpak install flathub io.github.pwr_solaar.solaar -y
-flatpak install flathub net.xmind.XMind -y
-flatpak install flathub org.upscayl.Upscayl -y
-flatpak install flathub com.termius.Termius -y
-flatpak install flathub it.mijorus.gearlever -y
-flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor -y
+echo "Instalando aplicativo em Flatpak..."
+flatpak install -y \
+  com.discordapp.Discord \
+  com.github.KRTirtho.Spotube \
+  com.obsproject.Studio \
+  com.spotify.Client \
+  com.todoist.Todoist \
+  com.tomjwatson.Emote \
+  io.github.zen_browser.zen \
+  it.mijorus.gearlever \
+  md.obsidian.Obsidian \
+  net.mkiol.SpeechNote \
+  net.mkiol.SpeechNote.Addon.amd \
+  net.xmind.XMind \
+  org.telegram.desktop \
+  org.upscayl.Upscayl \
+  page.codeberg.libre_menu_editor.LibreMenuEditor
 
-# Instalar ícones
-git clone https://github.com/vinceliuice/WhiteSur-icon-theme
-cd WhiteSur-icon-theme/
-./install.sh -a --alternative -b --bold
+echo "Pacotes Flatpak instalados com sucesso!"
 
-# Instalar as fontes que estão na pasta: Fontes
-# Aplicativos para instalar depois manualmente:
+# Pacotes a serem baixados e instalados
+echo "Instalando aplicativo em .deb..."
 
-# Instalar o Microsoft Edge:
-# https://go.microsoft.com/fwlink?linkid=2149137&brand=M102
+pacotes=(
+  "Microsoft Edge" "https://go.microsoft.com/fwlink?linkid=2149051&brand=M102" "microsoft-edge.deb"
+  "Slack" "https://slack.com/downloads/instructions/linux?ddl=1&build=deb" "slack.deb"
+  "Zoom Meeting" "https://zoom.us/client/6.2.5.2440/zoom_amd64.deb" "zoom.deb"
+  "Insync" "https://cdn.insynchq.com/builds/linux/3.9.4.60020/insync_3.9.4.60020-noble_amd64.deb" "insync.deb"
+  "Figma Linux" "https://github.com/Figma-Linux/figma-linux/releases/download/v0.11.5/figma-linux_0.11.5_linux_amd64.deb" "figma-linux.deb"
+  "Firefox Progressive Apps Extension" "https://github.com/filips123/PWAsForFirefox/releases/download/v2.12.5/firefoxpwa_2.12.5_amd64.deb" "firefoxpwa.deb"
+)
 
-# Instalar o Slack:
-# https://slack.com/downloads/instructions/linux?ddl=1&build=rpm
+# Baixar e instalar os pacotes
+for pacote in "${pacotes[@]}"; do
+  nome=$(echo "$pacote" | cut -d'"' -f2)
+  url=$(echo "$pacote" | cut -d'"' -f4)
+  arquivo=$(echo "$pacote" | cut -d'"' -f6)
+  
+  echo "Baixando $nome..."
+  wget -q "$url" -O "$arquivo"
+  
+  echo "Instalando $nome..."
+  sudo apt install ./$(basename "$arquivo")
+  
+  echo "Limpando..."
+  rm "$arquivo"
+done
 
-# Instalar o Zoom:
-# https://zoom.us/client/6.2.3.2056/zoom_x86_64.rpm
+echo "Pacotes .deb instalados com sucesso!"
 
-# Instalar o Insync:
-# https://cdn.insynchq.com/builds/linux/3.9.4.60020/insync-3.9.4.60020-fc40.x86_64.rpm
+# Instalar tema
+echo "Insalando tema e ícones..."
 
-# Instalar o AnythingLLM Desktop:
-# curl -fsSL https://s3.us-west-1.amazonaws.com/public.useanything.com/latest/installer.sh | sh
+git clone https://github.com/vinceliuice/Graphite-gtk-theme
+cd Graphite-gtk-theme/
+./install.sh -t --theme blue -c --color dark -s --size standard -l --libadwaita --tweaks black rimless normal
 
-# Instalar o Figma Desktop:
-# https://github.com/Figma-Linux/figma-linux/releases/download/v0.11.5/figma-linux_0.11.5_linux_x86_64.rpm
+# Instalar os ícones
+git clone https://github.com/vinceliuice/Colloid-icon-theme
+cd Colloid-icon-theme/
+./install.sh
 
-# Instalar Docker Desktop 
-# sudo dnf install ./docker-desktop-<arch>.rpm -y
+# Instalar manualmente: Docker e Fontes.
 
-# O que adicionar como webapp depois: Notion
+echo "Temas e ícones instalados e aplicados com sucesso!"
+
+echo "Fim do Ubuntu Automate"
